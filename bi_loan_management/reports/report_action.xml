@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="loan_salary_advanced_form_report" model="ir.actions.report">   
+        <field name="name">Loan/Salary Advanced Form</field>
+        <field name="model">hr.loan</field>
+        <field name="report_type">qweb-pdf</field> 
+        <field name="report_name">bi_loan_management.loan_salary_advanced_form_template</field>
+        <field name="report_file">bi_loan_management.loan_salary_advanced_form_template</field>
+        <field name="binding_model_id" ref="bi_loan_management.model_hr_loan"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="bi_loan_management.loan_salary_advanced_form_paperformat"/>
+     </record>
+
+</odoo>

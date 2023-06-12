@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="lpo_header_template">
+        <div class="row" style="width:100px;margin-right:40px;">
+            <div class="6">
+                <img style="max-width:250px;max-height:150px;" t-if="env.user.company_id.logo" t-att-src="image_data_uri(env.user.company_id.logo)"/>
+            </div>
+            <div class="6"></div>
+        </div>        
+    </template>
+
+</odoo>

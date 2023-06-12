@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="purchase_order_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="purchase_order_printout.lpo_header_template">
+                </t>
+                    <div class="page" style="width:100%">
+                        <div class="row" style="text-align:center;" >
+                            <div class="col-3"></div>
+                            <div class="col-6" style="font-weight:bold;font-size:20px;font-family: Times and Roman;">
+                                <u>Local Purchase Order and Agreement</u>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                <div class="row" width="50">
+                    <table width="100%" style="border:1px solid black;border-collapse:collapse;margin-top:35px;">
+                        <tr width="100%">
+                            <td colspan="2" width="48%" style="text-align:center;font-weight:bold;background-color: #f4d03f;border-right :1px solid black;">Supplier</td>
+                            <td width="4%" style="border-top:hidden;"></td>
+                            <td width="24%" style="text-align:center;font-weight:bold;background-color: #f4d03f;border-left:1px solid black; ">LPO Number</td>
+                            <td width="24%" style="text-align:center;font-weight:bold;background-color: #f4d03f;border-left:1px solid black;border-right:1px solid black;">LPO Issue  DATE</td>
+                        </tr>
+                        <tr >
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">Company Name</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">
+                                <t t-if="o.partner_id">
+                                    <span t-field="o.partner_id.name"/>
+                                </t>
+                            </td>
+                            <td width="4%" style="border-bottom:hidden;"></td>
+                            <td width="24%" style="border-top:1px solid black;border-left:1px solid black;padding-left:5px;">
+                                <t t-if="o.name">
+                                    <span t-field="o.name"/>
+                                </t>
+                            </td>
+                            <td width="24%" style="border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;padding-left:5px;">
+                                <t t-if="o.date_approve">
+                                    <span t-field="o.date_approve"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">Street Address</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">
+                                <t t-if="o.partner_id.street">
+                                    <span t-field="o.partner_id.street"/>
+                                </t>
+                            </td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td width="24%" style="border-top:1px solid black;"></td>
+                            <td width="24%" style="border-top:1px solid black;border-right:hidden;"></td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">City, ST ZIP</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">
+                                <t t-if="o.partner_id.city">
+                                    <span t-field="o.partner_id.city"/>
+                                </t>   
+                                <t t-if="o.partner_id.zip">
+                                    <span t-field="o.partner_id.zip"/>
+                                </t>
+                            </td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="text-align:center;font-weight:bold;background-color: #f4d03f;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;">DELIVER TO</td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">Phone</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">
+                                <t t-if="o.partner_id.phone">
+                                    <span t-field="o.partner_id.phone"/>
+                                </t>
+                            </td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="24%" style="border-top:1px solid black;border-left:1px solid black;padding-left:5px;">Name :- <span t-field="o.company_id.name"/></td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">Email Address</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;">
+                                <t t-if="o.partner_id.email">
+                                    <span t-field="o.partner_id.email"/>
+                                </t>
+                            </td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td width="24%" style="border-top:1px solid black;"></td>
+                            <td width="24%" style="border-top:1px solid black;border-right:hidden;"></td>
+                        </tr> 
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;"></td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;"></td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="text-align:center;font-weight:bold;background-color: #f4d03f;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;">Bill To</td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-top:1px solid black;font-weight:bold;padding-left:5px;"><u>Quote:</u></td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;font-weight:bold;"></td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="padding-left:5px;text-align:left;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;">
+                                <t t-if="o.company_id">
+                                    <span t-field="o.company_id.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;font-weight:bold;padding-left:5px;">Project Name</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;font-weight:bold;">
+                                <t t-if="o.project_id">
+                                    <span t-field="o.project_id.name"/>
+                                </t>
+                            </td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="padding-left:5px;text-align:left;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;">
+                                P.O. Box:  
+                                <!-- <t t-if="o.partner_id.zip"> -->
+                                    <span t-field="o.partner_id.zip"/>
+                                <!-- </t> -->
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;font-weight:bold;padding-left:5px;">Stand Size</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;font-weight:bold;"></td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="padding-left:5px;text-align:left;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;">
+                                Plot No.
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;font-weight:bold;padding-left:5px;">Show Date &amp; Venue</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;font-weight:bold;"></td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="padding-left:5px;text-align:left;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;">
+                                <span t-field="o.company_id.city"/>
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-right:1px solid black;border-top:1px solid black;font-weight:bold;padding-left:5px;">Project Value</td>
+                            <td width="33%" style="border-right:1px solid black;border-top:1px solid black;padding-left:5px;font-weight:bold;"></td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="padding-left:5px;text-align:left;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;">
+                                <span t-field="o.company_id.state_id"/><span t-field="o.company_id.city"/>
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-top:1px solid black;border-bottom:hidden;border-left:hidden;"></td>
+                            <td width="33%" style="border-top:1px solid black;border-right:hidden;border-left:hidden;border-bottom:hidden;"></td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="padding-left:5px;text-align:left;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;height:23px;">
+                                TRN No - 
+                                <t t-if="o.company_id.vat">
+                                    <span t-field="o.company_id.vat"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td colspan="2" width="48%" style="text-align:left;border-bottom :hidden;border-right :hidden;border-left :hidden;padding-left:5px;"><b>Amount in Words:</b>
+                                <!-- <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/> -->
+                            </td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="padding-left:5px;text-align:left;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;height:23px;">
+                                Tel: 
+                                <t t-if="o.company_id.phone">
+                                    <span t-field="o.company_id.phone"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="15%" style="border-top:1px solid black;border-bottom:hidden;border-left:hidden;"></td>
+                            <td width="33%" style="border-top:1px solid black;border-right:hidden;border-left:hidden;border-bottom:hidden;"></td>
+                            <td width="4%" style="border-top:hidden;border-bottom:hidden;"></td>
+                            <td colspan="2" width="48%" style="padding-left:5px;text-align:left;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;height:23px;">
+                                <t t-if="o.company_id.email">
+                                    <span t-field="o.company_id.email"/>
+                                </t>
+                            </td>
+                        </tr>    
+                    </table>  
+                    <br/>
+                    <table style="width:100%;border:1px solid black;border-collapse:collapse;">
+                        <thead>
+                            <tr style="line-height: 30px;background:#f4d03f">
+                                <th style="width:5%;border-top-left-radius: 5px;text-align:center;background:#f4d03f;border:1px solid black">
+                                    <span><b>No.</b></span>
+                                </th>
+                                <th style="width:30%;text-align:center;background:#f4d03f;border:1px solid black">
+                                    <span><b>DESCRIPTION</b></span>
+                                </th>
+                                <th style="width:25%;text-align:center;background:#f4d03f;border:1px solid black">
+                                    <span><b>QTY</b></span>
+                                </th>
+                                <th style="width:20%;text-align:center;padding-right:5px;background:#f4d03f;border:1px solid black">
+                                    <span><b>UNIT PRICE</b></span>
+                                </th>
+                                <th colspan="2" style="width:20%;text-align:center;padding-right:5px;background:#f4d03f;border:1px solid black">
+                                    <span><b>AMOUNT</b></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="no" t-value='1'></t>
+                            <t t-set="total" t-value="0" />
+                            <t t-foreach="o.order_line" t-as="line">
+                            <!-- <t t-set="total" t-value="total+line.price_subtotal"/> -->
+                                <tr>
+                                    <td style="width:5%;text-align:center;border: 1px solid black;">
+                                        <span t-esc="no"/><t t-set="no" t-value="no+1"/>
+                                    </td>
+                                    <td style="width:30%;border: 1px solid black;padding-left:5px">
+                                        <t t-if="line.name">
+                                            <span style="word-break:break-word" t-field="line.name"></span>
+                                        </t>
+                                    </td>
+                                    <td style="width:25%;border: 1px solid black;padding-left:5px;text-align:right;">
+                                        <t t-if="line.product_qty">
+                                            <span t-esc="line.product_qty"></span>
+                                        </t>
+                                    </td>
+                                    <td style="width:20%;border: 1px solid black;text-align:right;padding-right:5px;">
+                                        <t t-if="line.price_unit">
+                                            <span style="word-break:break-word;" t-field="line.price_unit"></span>
+                                        </t>
+                                    </td>
+                                    <td colspan="2" style="width:20%;border: 1px solid black;text-align:right;padding-right:5px;">
+                                        <t t-if="line.price_total">
+                                            <span style="word-break:break-word;" t-esc="line.price_total"></span>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tr>
+                            <td width="100%" colspan="3" style="text-align:center;font-weight:bold;border-right :1px solid black;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;height:23px;"></td>
+                            <td width="20%" style="border: 1px solid black;text-align:center;font-weight:bold;background:#f4d03f;padding-top:5px;">TOTAL NET</td>
+                            <td width="5%" style="border: 1px solid black;border-right:hidden;text-align:left;font-weight:bold;background:#f4d03f;padding-top:5px;padding-left:3px">
+                                <span t-field="o.currency_id"/>
+                            </td>
+                            <td width="15%" style="border: 1px solid black;text-align:right;font-weight:bold;background:#f4d03f;padding-top:5px;">
+                                <span t-esc="o.amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+                        <tr style="height:20px;">
+                            <td width="42%">
+                            </td>
+                            <td width="16%" style="text-align:center;font-weight:bold;">
+                                <u><i>Payment Terms:</i></u>
+                            </td>
+                            <td width="42%">
+                            </td>
+                        </tr>
+                        <tr style="height:50px;">
+                            <td colspan="3" width="100%" style="font-weight:bold;padding-left:10px;">
+                                -> 50% Advance upon confirmation within 7 days after receiving the original invoice.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="100%" style="font-weight:bold;padding-left:10px;padding-bottom:8px;">
+                                -> 50% Balance upon 60days after the show completion date after receiving the original invoice.
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td width="100%" style="font-weight:bold;font-size:12px;">
+                                <u>Note:  The above price is exclusive of VAT. Please send invoice mentioning the VAT amount and your TRN Number.</u>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%" style="height:30px;">
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="100%" style="font-weight:bold;font-size:15px;text-align:center;">
+                                ** Final Invoice Value subject to change (+/-) based on Site Delivery Items**
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%" style="height:20px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%" style="font-weight:bold;font-size:15px;">
+                                The following terms and conditions are part of this order confirmation: 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%" style="height:20px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%" style="font-size:15px;">
+                                Thanking you in advance. If there is some clarification feel free to contact us.
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td width="50%" style="font-weight:bold;">
+                                Best Regards,
+                            </td>
+                            <td width="50%" style="font-weight:bold;text-align:center;">
+                                Accepted &amp; Acknowledge By,
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="50%" style="font-weight:bold;padding-left:50px;">
+                                <t t-if="o.company_id">
+                                    <span t-field="o.company_id.name"/>
+                                </t>
+                            </td>
+                            <td width="50%" style="font-weight:bold;text-align:right;">
+                                <t t-if="o.partner_id">
+                                    <span t-field="o.partner_id.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td colspan="2" width="100%" style="height:40px;">
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="50%">
+                                <span style="font-weight:bold;">Hasitha Kariyawasam</span>, Accounts 
+                            </td>
+                            <td width="50%" style="font-weight:bold;text-align:right;">
+                                Authorized Signatory
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td width="50%">
+                                Mob:
+                            </td>
+                            <td width="50%">
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td colspan="2" width="100%" style="height:20px;">
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td colspan="2" width="100%" style="border-1px solid black;text-align:center;text-size:15px;">
+                                If you have any questions about this LPO, please contact. 
+                            </td>
+                        </tr>
+                        <tr width="100%">
+                            <td colspan="2" width="100%" style="border-1px solid black;text-align:center;text-size:15px;">
+                                <span style="text-color:#888888">Tel:-</span><span t-field="o.company_id.phone"/>, E mail- <span t-field="o.company_id.email"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>          
+        </t>
+    </template>
+</odoo>

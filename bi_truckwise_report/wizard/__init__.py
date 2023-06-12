@@ -1,0 +1,1 @@
+from . import truck_wise_wizard
